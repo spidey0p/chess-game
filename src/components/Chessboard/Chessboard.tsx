@@ -12,11 +12,13 @@ export default function Chessboard() {
     for (let i = 0; i < horizontalAxis.length; i++) {
         const number = j + i + 2;
 
-        if(number % 2 === 0) {
-            board.push(<Tile />);
-        } else {
-            board.push(<Tile />);
-        }
+        board.push(<Tile number={number} />);
+
+        // if(number % 2 === 0) {
+        //     board.push(<Tile />);
+        // } else {
+        //     board.push(<Tile />);
+        // }
     }
   }
 
