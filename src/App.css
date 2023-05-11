@@ -1,7 +1,7 @@
 #app{
   display: grid;
   place-content: center;
-  height: 100vh;
-  background-color: #202020;
+  height: 110vh;
+  background-color:#202020;
 
 }
