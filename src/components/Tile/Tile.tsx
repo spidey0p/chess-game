@@ -1,13 +1,13 @@
-import '/Tile.css';
+import './Tile.css';
 
 interface Props {
     number: number;
 }
 export default function Tile({ number }: Props){
     if(number % 2 === 0){
-        return <div className='tile black-tile'>hello</div>
+        return <div className='tile black-tile'><img src='assets/images/pawn_b.png'/></div>;
     } else{
-        return <div className='tile white-tile'>hii</div>
+        return <div className='tile white-tile'></div>;
     }
 }
 
