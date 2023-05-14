@@ -68,31 +68,40 @@ function movePiece(e: React.MouseEvent){
   const chessboard = chessboardRef.current;
   if(activePice && chessboard){
       const minX = chessboard.offsetLeft - 25;
-      const minY = chessboard.offsetTop;
+      const minY = chessboard.offsetTop - 25;
+      const maxX = chessboard.offsetLeft + chessboard.clientWidth - 75;
+      const maxY = chessboard.offsetTop + chessboard.clientHeight - 75;
       const x = e.clientX - 50;
       const y = e.clientY - 50;
       activePice.style.position = "absolute";
       // activePice.style.left = `${x}px`;
       // activePice.style.top = `${y}px`;
 
-      console.log(chessboard);
-
+      //if x is bigger then minimum amount
       if(x<minX){
         activePice.style.left = `${minX}px`;
-      } else {
+      }
+      //if x is biger then maximum amount
+      else if(x>maxX){
+        activePice.style.left = `${maxX}px`;
+      }
+      //if x is in the constraints
+      else {
         activePice.style.left = `${x}px`;
       }
 
+      //if y is bigger then minimum amount
       if(y<minY){
         activePice.style.top = `${minY}px`;
-      } else {
+      }
+      //if y is biger then maximum amount
+      else if(y>maxY){
+        activePice.style.top = `${maxY}px`;
+      }
+      //if y is in the constraints
+      else {
         activePice.style.top = `${y}px`;
       }
-
-      activePice.style.left = 
-        x < minX
-          ? (activePice.style.left = `${minX}px`)
-          :(activePice.style.left = `${x}px`);
   }
 }
 
