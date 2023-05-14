@@ -83,6 +83,12 @@ function movePiece(e: React.MouseEvent){
         activePice.style.left = `${x}px`;
       }
 
+      if(y<minY){
+        activePice.style.top = `${minY}px`;
+      } else {
+        activePice.style.top = `${y}px`;
+      }
+
       activePice.style.left = 
         x < minX
           ? (activePice.style.left = `${minX}px`)
