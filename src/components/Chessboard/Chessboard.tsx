@@ -44,8 +44,36 @@ for(let i = 0;i<8;i++){
   pieces.push({image: "assets/images/pawn_w.png",x:i,y:1});
 }
 
+let activePice: HTMLElement | null = null; 
 
+function grabPiece(e: React.MouseEvent){
+    const element = e.target as HTMLElement;
+    if(element.classList.contains("chess-piece")){
+      const x = e.clientX - 50;
+      const y = e.clientY - 50;
+      element.style.position = "absolute";
+      element.style.left = `${x}px`;
+      element.style.top = `${y}px`;
 
+      activePice = element;
+    }
+}
+
+function movePiece(e: React.MouseEvent){  
+  if(activePice){
+      const x = e.clientX - 50;
+      const y = e.clientY - 50;
+      activePice.style.position = "absolute";
+      activePice.style.left = `${x}px`;
+      activePice.style.top = `${y}px`;
+  }
+}
+
+function dropPiece(e: React.MouseEvent){
+  if(activePice){
+    activePice = null;
+  }
+}
 
 export default function Chessboard() {
   let board = [];
@@ -65,5 +93,13 @@ export default function Chessboard() {
     }
   }
 
-  return <div id="chessboard">{board}</div>;
+  return (
+    <div 
+    onMouseMove={(e) => movePiece(e)} 
+    onMouseDown={(e) => grabPiece(e)}
+    onMouseUp={(e) => dropPiece(e)}
+    id="chessboard">
+      {board}
+    </div>
+  );
 }
