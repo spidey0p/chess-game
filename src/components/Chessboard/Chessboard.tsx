@@ -101,22 +101,23 @@ function movePiece(e: React.MouseEvent){
   }
 }
 
-function dropPiece(e: React.MouseEvent){
+function dropPiece(e: React.MouseEvent) {
   const chessboard = chessboardRef.current;
-  if(activePiece && chessboard){
-    const x = Math.floor(e.clientX - chessboard.offsetLeft) / 100;
-    const y = Math.abs(Math.ceil(e.clientY - chessboard.offsetTop - 800) / 100);
-    console.log(x, y);
+  if (activePiece && chessboard) {
+    const x = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
+    const y = Math.abs(Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100));
+
     setPieces((value) => {
-      const pieces = value.map(p => {
-        if(p.x === gridX && p.y === gridY){
+      const updatedPieces = value.map((p) => {
+        if (p.image === activePiece?.getAttribute("src")) {
           p.x = x;
           p.y = y;
         }
         return p;
-      })
-      return pieces;
-    })
+      });
+      return updatedPieces;
+    });
+
     setActivePiece(null);
   }
 }
